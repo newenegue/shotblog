@@ -24,17 +24,20 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @user = User.find(params[:user_id])
+    @post = @user.posts.create(params[:post].permit(:title,:body))
+    redirect_to user_path(@user)
+    # @post = Post.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @post.save
+    #     format.html { redirect_to @post, notice: 'Post was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @post }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @post.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /posts/1
@@ -54,11 +57,14 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    redirect_to user_path(@user)
+    # respond_to do |format|
+    #   format.html { redirect_to posts_url }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

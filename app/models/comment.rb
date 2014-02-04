@@ -1,6 +1,9 @@
 class Comment
   include Mongoid::Document
-  field :name, type: String
+  field :commenter, type: String
   field :body, type: String
   embedded_in :post
+
+  validates :commenter, presence: true
+  validates :body, presence: true
 end

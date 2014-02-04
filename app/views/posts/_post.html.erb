@@ -1,0 +1,14 @@
+<p>
+	<strong>Title:</strong>
+	<%= post.title %>
+</p>
+
+<p>
+	<%= post.body %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Post', [post.user, post],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

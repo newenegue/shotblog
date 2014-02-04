@@ -4,4 +4,7 @@ class Post
   embeds_many :comments
   field :title, type: String
   field :body, type: String
+
+  validates :title, presence: true
+  validates :body, presence: true
 end
