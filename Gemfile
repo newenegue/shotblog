@@ -2,10 +2,37 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
+gem 'bson_ext'
 
+# mongoid
+gem 'mongoid', github: 'mongoid/mongoid'
+gem 'mongo'
+
+# authentication
+gem 'bcrypt-ruby', github: 'codahale/bcrypt-ruby'
+
+# bootstrap
+gem 'bootstrap-sass', '~> 3.1.0'
+
+# dragonfly
+gem 'dragonfly', "~>1.0.3"
+gem 'dragonfly-s3_data_store'
+gem 'rack-cache', :require => 'rack/cache'
+
+# fog for file uploading
+gem 'fog'
+
+# storing google cloud or S3 id and secret
+gem 'figaro'
+
+# for heroku deployment
+gem 'rails_12factor'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+
+# TimeDifference
+gem 'time_difference'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -41,10 +68,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-# mongoid
-gem "mongoid", github: "mongoid/mongoid"
-
-# paperclip
-gem "mongoid-paperclip", :require => "mongoid_paperclip"
-gem "aws-s3",            :require => "aws/s3"

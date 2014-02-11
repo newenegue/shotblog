@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Shotblog::Application.load_tasks
+Project2::Application.load_tasks

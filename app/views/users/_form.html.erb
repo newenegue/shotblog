@@ -1,37 +1,24 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :blog_name %><br>
-    <%= f.text_field :blog_name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%=form_for @user, :html => {:multipart => true} do |user|%>
+	<%=user.text_field :username, :placeholder => "Username (required)" if !current_user %><br>
+	<%=user.password_field :password, :placeholder => "Password (required)" %><br><br>
+	<% if current_user %>
+		<%=user.password_field :new_password, :placeholder => "New Password" %><br>
+		<%=user.password_field :confirm_password, :placeholder => "Confirm Password" %><br>
+	<% else %>
+	<!-- need to destroy current profile image with new profile image -->
+		<div>
+    		Profile image: <%= user.file_field :avatar %>
+  		</div>
+  		<div>
+    		image URL: <%= user.text_field :avatar_url %>
+  		</div>
+	<% end %><br />
+	<%=user.text_field :first_name, :placeholder => "First Name"%><br>
+	<%=user.text_field :last_name, :placeholder => "Last Name"%><br>
+	<%=user.text_field :email, :placeholder => "Email (required)"%><br>
+	<%=user.text_field :blog_name, :placeholder => "Blog Name (required)" if !current_user %><br>
+	
+<%= user.submit %>
 <% end %>
+
+ 

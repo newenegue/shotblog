@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Shotblog::Application.config.secret_key_base = '14aa42c545c102be9d22570ae423af7d2c64a17fe39e8525ce454bfb9d515b3c39161cf71f4c27fdcba04c3084eef5cf396c22eee4ea639968e3d85b54ac89bc'
+Project2::Application.config.secret_key_base = 'f38b46ce6efa454c078e79aadd82dac138b78969a1ed3ec8e340d56ed4a9015f53a069acf34d06465437b40221a09936ec75a91c0e2b1e70db021cb6a3226a25'

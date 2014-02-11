@@ -1,0 +1,7 @@
+<!-- like button toggle for current user -->
+
+<!-- display all users who like the post -->
+<%# @post.likes.each do |like| %>
+	<%= current_user == like.user ? 'You' : like.user.username %>
+	<%#= like.user.username %>
+<%# end %>

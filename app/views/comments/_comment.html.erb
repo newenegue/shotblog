@@ -1,0 +1,9 @@
+<h3>Comments</h3>
+
+<%= (@show_comments ? (link_to 'Show Less Comments') : (link_to 'Show All Comments', :show_comments => 'all')) if @post.comments.length > 3 %>
+<% @comments.each do |comment| %>
+  <p>
+  	<strong><%= comment.commenter %></strong> - <%= time_elapsed(comment.timestamp) %>
+  	<p><%= comment.body %></p>
+  </p>
+<% end %>

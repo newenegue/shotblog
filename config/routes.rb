@@ -1,17 +1,29 @@
-Shotblog::Application.routes.draw do
-  get 'welcome/index'
-  # get 'profile', to: 'users#show'
+Project2::Application.routes.draw do
   resources :users
-
   resources :posts do
-    resources :comments, except: [:destroy, :update, :edit]
+    resources :comments, only:[:new,:create,:index,:show]
+    get 'likes' => 'likes#index'
+    post 'likes' => 'likes#create'
+    # delete 'likes/:id' => 'likes#destroy', as: 'unlike'
   end
+
+  # get 'likes' => 'likes#index'
+  # post 'likes' => 'likes#create', as: 'like'
+  delete 'likes/:id' => 'likes#destroy', as: 'unlike'
+  
+  
+  # user authenitcation
+  get 'login' => 'auths#new', as: 'login'
+  get 'logout' => 'auths#destroy', as: 'logout'
+  resources :auths, only:[:create]
+  
+  root 'posts#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

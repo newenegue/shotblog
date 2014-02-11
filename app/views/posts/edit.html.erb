@@ -1,6 +1,6 @@
-<h1>Editing post</h1>
+<h1>Edit Post</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<p><%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= link_to 'Back', posts_path %></p>
