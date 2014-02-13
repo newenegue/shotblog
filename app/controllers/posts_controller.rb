@@ -37,8 +37,8 @@ class PostsController < ApplicationController
 		@user = current_user
 		@post = @user.posts.new(post_params)
 		if @post.save
-			@post.shot_ids = session[:shot_ids]
-			session[:shot_ids] = []
+			@post.shot_ids = session[:shot_ids] || []
+			session.delete :shot_ids
 			redirect_to @post
 		else
 			flash[:error] = 'Post title is missing'

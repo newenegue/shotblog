@@ -1,9 +1,6 @@
 class ShotsController < ApplicationController
 	def index
 		@shots = Shot.all
-		# reset sessions shot_id
-		session[:shot_ids]||=[]
-		session[:shot_ids] = []
 	end
 
 	def show
@@ -15,6 +12,7 @@ class ShotsController < ApplicationController
 		respond_to do |format|
 			if @shot.save
 				# add this shot to the array
+				session[:shot_ids]||=[]
 				session[:shot_ids] << @shot.id
 				format.json { render json: {files: [@shot.to_jq_upload]}, status: :created, location: @shot }
 			else
@@ -25,6 +23,8 @@ class ShotsController < ApplicationController
 
 	def new
 		@shot = Shot.new
+		# reset sessions shot_id
+		session.delete :shot_ids
 	end
 
 	def destroy
