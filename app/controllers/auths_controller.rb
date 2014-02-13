@@ -11,7 +11,6 @@ class AuthsController < ApplicationController
 
 	# log in
 	def create
-		# @tmp_user = User.new(username: params[:user][:username])
 		user = User.find_by(username: params[:user][:username])
 
 		if user && user.authenticated?(params[:user][:password])
