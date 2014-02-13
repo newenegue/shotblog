@@ -38,11 +38,11 @@ class ApplicationController < ActionController::Base
   	end
   end
 
-  # def method_name
-    
-  # end
+  def pending_shot_ids
+    session[:shot_ids]||=[]
+  end
 
-  # def reset_
-    
-  # end
+  def reset_shot_ids
+    session.delete :shot_ids
+  end
 end

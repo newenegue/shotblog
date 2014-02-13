@@ -22,7 +22,8 @@ gem 'rack-cache', :require => 'rack/cache'
 # jQuery File Uploader for Rails
 gem "jquery-fileupload-rails"
 
-# gem 's3_cors_fileupload'
+# angular JS for rails
+# gem 'angularjs-rails'
 
 # fog for file uploading
 gem 'fog'
