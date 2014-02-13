@@ -2,13 +2,14 @@ Project2::Application.routes.draw do
   resources :users
   resources :posts do
     resources :comments, only:[:new,:create,:index,:show]
+    # resources :images, only:[:new,:create,:index]
     get 'likes' => 'likes#index'
     post 'likes' => 'likes#create'
     # delete 'likes/:id' => 'likes#destroy', as: 'unlike'
   end
 
-  # get 'likes' => 'likes#index'
-  # post 'likes' => 'likes#create', as: 'like'
+  resources :shots, only:[:new,:show,:create,:index,:destroy]
+
   delete 'likes/:id' => 'likes#destroy', as: 'unlike'
   
   

@@ -1,20 +1,20 @@
-<%= form_for @post, :html => {:multipart => true} do |p| %>
+<%= form_for @post, :html => {:multipart => true} do |f| %>
 
   <div class="field">
-    <%= p.label :title %><br>
-    <%= p.text_field :title %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= p.label :body %><br>
-    <%= p.text_area :body %>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
   </div>
-  <div>
-    <%= p.file_field :image %>
-  </div>
-  <div>
-    image URL: <%= p.text_field :image_url %>
-  </div>
+
+  <% params[:shot_ids].each do |shot_id| %>
+    <%= f.hidden_field :shot_ids, multiple: true, value: shot_id %>
+  <% end %>
+
+</div>
   <div class="actions">
-    <%= p.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

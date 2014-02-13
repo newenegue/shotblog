@@ -1,0 +1,3 @@
+<% @shots.each do |shot| %>
+	<%= image_tag shot.image.url if shot.image_stored?%>
+<% end %>

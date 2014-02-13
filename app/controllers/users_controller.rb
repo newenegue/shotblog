@@ -74,7 +74,9 @@ private
 			:first_name, 
 			:last_name, 
 			:blog_name, 
-			:avatar, 
-			:avatar_url)
+			:avatar,
+			:avatar_url,
+			:remove_avatar,
+			:retained_avatar)
 	end
 end

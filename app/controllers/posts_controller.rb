@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
+		@shot
 	end
 
 	def edit
@@ -36,6 +37,13 @@ class PostsController < ApplicationController
 		# Create post through current user
 		@user = current_user
 		@post = @user.posts.new(post_params)
+		# params[:post].each do |k,v|
+		# 	if k.include? "shot"
+		# 		# puts "*************************** " + v
+		# 		@post.shots << Shot.find(v)
+		# 	end
+		# end
+
 		@post.update_attributes(:timestamp => Time.now)
 		if @post.save
 			redirect_to @post
@@ -64,7 +72,7 @@ private
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :body, :image, :image_url)
+		params.require(:post).permit(:title, :body, shot_ids: [])
 	end
 
 end

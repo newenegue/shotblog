@@ -4,15 +4,15 @@
 	<% if current_user %>
 		<%=user.password_field :new_password, :placeholder => "New Password" %><br>
 		<%=user.password_field :confirm_password, :placeholder => "Confirm Password" %><br>
-	<% else %>
-	<!-- need to destroy current profile image with new profile image -->
-		<div>
+		<%#= user.check_box :remove_avatar %>
+	<% end %><br />
+	<div>
     		Profile image: <%= user.file_field :avatar %>
+    		<%= user.hidden_field :retained_avatar %>
   		</div>
   		<div>
     		image URL: <%= user.text_field :avatar_url %>
-  		</div>
-	<% end %><br />
+  	</div>
 	<%=user.text_field :first_name, :placeholder => "First Name"%><br>
 	<%=user.text_field :last_name, :placeholder => "Last Name"%><br>
 	<%=user.text_field :email, :placeholder => "Email (required)"%><br>
@@ -20,5 +20,4 @@
 	
 <%= user.submit %>
 <% end %>
-
  

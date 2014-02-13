@@ -1,0 +1,13 @@
+<h1>Upload images</h1>
+
+<%= form_for @shot, :html => {:multipart => true} do |i| %>
+  <div>
+    <%= i.file_field :image %>
+  </div>
+  <div>
+    image URL: <%= i.text_field :image_url %>
+  </div>
+  <div class="actions">
+    <%= i.submit %>
+  </div>
+<% end %>

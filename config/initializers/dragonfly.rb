@@ -10,14 +10,14 @@ Dragonfly.app.configure do
 
   url_format "/media/:job/:name"
 
-  # datastore :file,
-  #   root_path: Rails.root.join('public/system/dragonfly', Rails.env),
-  #   server_root: Rails.root.join('public')
+  datastore :file,
+    root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+    server_root: Rails.root.join('public')
 
-  datastore :s3,
-    bucket_name: 'shotblog',
-    access_key_id: ENV['AWSAccessKeyId'],
-    secret_access_key: ENV['AWSSecretKey']
+  # datastore :s3,
+  #   bucket_name: 'shotblog',
+  #   access_key_id: ENV['AWSAccessKeyId'],
+  #   secret_access_key: ENV['AWSSecretKey']
 end
 
 # Logger

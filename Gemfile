@@ -19,6 +19,11 @@ gem 'dragonfly', "~>1.0.3"
 gem 'dragonfly-s3_data_store'
 gem 'rack-cache', :require => 'rack/cache'
 
+# jQuery File Uploader for Rails
+gem "jquery-fileupload-rails"
+
+# gem 's3_cors_fileupload'
+
 # fog for file uploading
 gem 'fog'
 

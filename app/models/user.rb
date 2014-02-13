@@ -6,6 +6,7 @@ class User
   
   # dragonfly
   extend Dragonfly::Model
+  extend Dragonfly::Model::Validations
   dragonfly_accessor :avatar
 
   # relationships
@@ -36,6 +37,8 @@ class User
   # optional
   validates :first_name, length: {maximum: 30}
   validates :last_name, length: {maximum: 30}
+  # dragonfly
+  validates_property :format, of: :avatar, in: ['jpeg', 'png']
   
 
   # validate user password

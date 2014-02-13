@@ -1,7 +1,8 @@
 <h2><%= current_user ? current_user.blog_name : "ShotBlog" %></h2> 
 
 <% if current_user %>
-	<div><%= link_to 'New Post', new_post_path %></div>
+	<div><%#= link_to 'New Post', new_post_path %></div>
+	<div><%= link_to 'New Post', new_shot_path %></div>
 	<div><%= @show ? (link_to 'My Posts', posts_path) : (link_to 'All Posts', posts_path(show: 'all')) %></div>
 <% end %>
 
