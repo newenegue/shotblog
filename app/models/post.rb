@@ -12,4 +12,14 @@ class Post
   field :timestamp, type: Time
 
   validates :title, presence: true
+
+  def main_shot
+    shots.first
+  end
+
+  before_create :set_timestamp
+
+  def set_timestamp
+    self.timestamp = Time.now
+  end
 end

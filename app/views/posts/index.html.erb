@@ -8,11 +8,7 @@
 
 <% @posts.each do |post| %>
 	<div><%= link_to post.title, post %></div>
-	<% post.shots.each do |shot| %>
-		<%= image_tag shot.image.thumb('100x100#').url if shot.image_stored? %>
-		<% break %>
-	<% end %>
+	<%= image_tag post.main_shot.image.thumb('100x100#').url if (post.main_shot  && post.main_shot.image_stored?) %>
 	<p><%= post.likes.length == 1 ? post.likes.length.to_s + ' like' : post.likes.length.to_s + ' likes' %></p>
-	<div><%#= image_tag post.image.url if post.image? %></div>
 	<p>---------------------------------------------</p>
 <% end %>

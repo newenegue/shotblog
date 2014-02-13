@@ -43,7 +43,3 @@ private
 			:retained_image)
 	end
 end
-
-
-# using .map returns an array
-# .map(&:id)

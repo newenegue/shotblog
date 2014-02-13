@@ -36,13 +36,8 @@ class PostsController < ApplicationController
 		# Create post through current user
 		@user = current_user
 		@post = @user.posts.new(post_params)
-		@post.timestamp = Time.now
-		if @post.update_attributes(:timestamp => Time.now)
-			session[:shot_ids].each do |shot|
-				s = Shot.find(shot)
-				s.post = @post
-				s.save
-			end
+		if @post.save
+			@post.shot_ids = session[:shot_ids]
 			session[:shot_ids] = []
 			redirect_to @post
 		else
