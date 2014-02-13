@@ -8,11 +8,6 @@
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
-
-  <% params[:shot_ids].each do |shot_id| %>
-    <%= f.hidden_field :shot_ids, multiple: true, value: shot_id %>
-  <% end %>
-
 </div>
   <div class="actions">
     <%= f.submit %>

@@ -26,7 +26,6 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
-		@shot
 	end
 
 	def edit
@@ -37,15 +36,14 @@ class PostsController < ApplicationController
 		# Create post through current user
 		@user = current_user
 		@post = @user.posts.new(post_params)
-		# params[:post].each do |k,v|
-		# 	if k.include? "shot"
-		# 		# puts "*************************** " + v
-		# 		@post.shots << Shot.find(v)
-		# 	end
-		# end
-
-		@post.update_attributes(:timestamp => Time.now)
-		if @post.save
+		@post.timestamp = Time.now
+		if @post.update_attributes(:timestamp => Time.now)
+			session[:shot_ids].each do |shot|
+				s = Shot.find(shot)
+				s.post = @post
+				s.save
+			end
+			session[:shot_ids] = []
 			redirect_to @post
 		else
 			flash[:error] = 'Post title is missing'
@@ -72,7 +70,7 @@ private
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :body, shot_ids: [])
+		params.require(:post).permit(:title, :body)
 	end
 
 end
