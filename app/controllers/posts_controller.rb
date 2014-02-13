@@ -38,8 +38,8 @@ class PostsController < ApplicationController
 		@post = @user.posts.new(post_params)
 		if @post.save
 			@post.shot_ids = pending_shot_ids
-			# @post.shot_ids = session[:shot_ids] || []
 			reset_shot_ids
+			# @post.shot_ids = session[:shot_ids] || []
 			# session.delete :shot_ids
 			redirect_to @post
 		else
@@ -49,7 +49,7 @@ class PostsController < ApplicationController
 	end
 
 	def update
-		if set_post.update(post_params)
+		if set_post.user == current_user && set_post.update(post_params)
 			redirect_to post_path
 		else
 			redirect_to edit_post_path
