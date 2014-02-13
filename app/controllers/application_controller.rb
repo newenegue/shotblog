@@ -37,4 +37,12 @@ class ApplicationController < ActionController::Base
   		seconds.to_s + (seconds == 1 ? ' second ago' : ' seconds ago')
   	end
   end
+
+  # def method_name
+    
+  # end
+
+  # def reset_
+    
+  # end
 end

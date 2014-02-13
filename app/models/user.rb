@@ -12,7 +12,7 @@ class User
   # relationships
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
-  # has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   attr_accessor :password, :new_password, :confirm_password
 
