@@ -1,0 +1,53 @@
+<div class="modal fade bs-example-modal-lg" id="<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        	<h4 class="modal-title" id="myModalLabel"><%= post.title %></h4>
+      	</div>
+      	<div class="modal-body">
+          <p><%= post.timestamp.strftime '%B %d, %Y' %></p>
+
+          <p>
+            <%= post.body %>
+          </p>
+
+          <% post.shots.each do |shot| %>
+            <%= image_tag shot.image.url if shot.image_stored?%>
+          <% end %>
+
+          <p>by: <%= post.user.username %></p>
+
+
+          <!-- LIKES  -->
+          <%= ((Like.find_by(user_id: current_user.id, post_id: post.id)) ? (link_to 'Unlike', unlike_path(post), method: :delete) : (link_to 'Like', post_likes_path(post), :method => :post) ) if current_user %> 
+          <p><%= post.likes.length == 1 ? post.likes.length.to_s + ' like' : post.likes.length.to_s + ' likes' %>: <%= render post.likes %></p>
+
+          <!-- DISPAY COMMMENTS -->
+          <h3>Comments</h3>
+          <% display_comments = params[:show_comments] %>
+          <%= (display_comments ? (link_to 'Show Less Comments') : (link_to 'Show All Comments', :show_comments => 'all')) if post.comments.length > 3 %>
+          <% if display_comments == "all" || post.comments.length <= 3 %>
+            <% show_comments = post.comments %>
+          <% else %>
+            <% show_comments = post.comments[-3..-1] %>
+          <% end %>
+          <% show_comments.each do |comment| %>
+            <p>
+              <%= image_tag comment.user.avatar.thumb('40x40#').url if comment.user.avatar_stored? %>
+              <strong><%= comment.user.username %></strong> - <%= time_elapsed(comment.timestamp) %>
+              <p><%= comment.body %></p>
+            </p>
+          <% end %>
+
+          <!-- CREATE NEW COMMENT  -->
+          <% if current_user %>
+            <%= form_for([post, post.comments.build]) do |f| %>
+              <div class="field"><%= f.text_field :body, placeholder: "Add a comment" %></div>
+            <% end %>
+            <p><%= (link_to 'Edit', edit_post_path(post)) if current_user.id == post.user.id%></p>
+          <% end %>
+    	</div>
+    </div>
+  </div>
+</div>

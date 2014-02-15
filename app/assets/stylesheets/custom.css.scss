@@ -1,1 +1,24 @@
 @import "bootstrap";
+
+body {
+	margin-top: 60px;
+}
+
+body.modalBlur > *:not(.modal) {
+	// -webkit-filter: blur(2px);
+}
+
+form {
+	margin: 5px;
+
+}
+
+
+
+.navAvatar {
+	margin-top: 5px;
+}
+
+.row {
+	// width: 1000px;
+}

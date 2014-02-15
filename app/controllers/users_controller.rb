@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
+
+	before_action :login_required, except: [:new,:create]
+	
 	def index
 		@users = User.all
 	end
 
 	def show
+		set_user
 	end
 
 	def new
@@ -17,7 +21,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			redirect_to login_path
+			redirect_to posts_path
 		else
 			redirect_to new_user_path
 		end

@@ -7,22 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<h1>ShotBlog</h1>
-	<p><%= current_user ? current_user.username : "(not logged in)" %></p>
-	<%= image_tag current_user.avatar.thumb('100x100#').url if current_user && current_user.avatar_stored?%>
-
-
-	<p><%= current_user ? (link_to "Log Out", logout_path) : (link_to "Log In", login_path) %></p>
-
-	<p><%= current_user ? (link_to "Edit Profile", edit_user_path(current_user)) : (link_to "Sign Up", new_user_path) %></p>
-
+	<header>
+		<%= render partial: 'layouts/navbar' %>
+	</header>
 	<% if flash[:error] %>
 		<p><%= flash[:error] %></p>
 	<% end %>
 
 	<%= yield %>
-	
-	<hr>Params: <%= params %><hr>
+
+	<% if current_user %>
+		<%= render partial: "users/edit_user", locals: {user: current_user} %>
+		<%= render partial: "posts/new_post", locals: {post: Post.new} %>
+	<% else %>
+		<%= render partial: "users/new_user", locals: {user: User.new} %>
+	<% end %>
+	<%#= current_user ? (render partial: "users/edit_user", locals: {user: current_user}) : (render partial: "users/new_user", locals: {user: User.new}) %>
+
+	<div class=></div>
 
 </body>
 </html>

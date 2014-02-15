@@ -1,13 +1,19 @@
 class PostsController < ApplicationController
+
+	before_action :login_required, except: [:new,:create]
+	
 	def index
 		if !current_user
 			params[:show] = 'all'
+			# @user = User.new
 		end
 		if params[:show] == 'all'
 			@posts = Post.all
+			# @user = current_user
 		else
 			# show only current users posts
 			@posts = current_user.posts
+			# @user = current_user
 		end
 
 		# show param access in html
@@ -39,9 +45,8 @@ class PostsController < ApplicationController
 		if @post.save
 			@post.shot_ids = pending_shot_ids
 			reset_shot_ids
-			# @post.shot_ids = session[:shot_ids] || []
-			# session.delete :shot_ids
-			redirect_to @post
+			# redirect_to @post
+			redirect_to posts_path
 		else
 			flash[:error] = 'Post title is missing'
 			render action: 'new'

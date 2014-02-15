@@ -45,4 +45,10 @@ class ApplicationController < ActionController::Base
   def reset_shot_ids
     session.delete :shot_ids
   end
+
+  def login_required
+    if !current_user
+      login_path
+    end
+  end
 end

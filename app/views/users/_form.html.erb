@@ -1,23 +1,22 @@
-<%=form_for @user, :html => {:multipart => true} do |user|%>
-	<%=user.text_field :username, :placeholder => "Username (required)" if !current_user %><br>
-	<%=user.password_field :password, :placeholder => "Password (required)" %><br><br>
+<%=form_for user, :html => {:multipart => true} do |f|%>
+	<%=f.text_field :username, :placeholder => "Username (required)" if !current_user %><br>
+	<%=f.password_field :password, :placeholder => "Password (required)" %><br><br>
 	<% if current_user %>
-		<%=user.password_field :new_password, :placeholder => "New Password" %><br>
-		<%=user.password_field :confirm_password, :placeholder => "Confirm Password" %><br>
-		<%#= user.check_box :remove_avatar %>
+		<%=f.password_field :new_password, :placeholder => "New Password" %><br>
+		<%=f.password_field :confirm_password, :placeholder => "Confirm Password" %><br>
 	<% end %><br />
 	<div>
-    		Profile image: <%= user.file_field :avatar %>
-    		<%= user.hidden_field :retained_avatar %>
+    		Profile image: <%= f.file_field :avatar %>
+    		<%= f.hidden_field :retained_avatar %>
   		</div>
   		<div>
-    		image URL: <%= user.text_field :avatar_url %>
+    		image URL: <%= f.text_field :avatar_url %>
   	</div>
-	<%=user.text_field :first_name, :placeholder => "First Name"%><br>
-	<%=user.text_field :last_name, :placeholder => "Last Name"%><br>
-	<%=user.text_field :email, :placeholder => "Email (required)"%><br>
-	<%=user.text_field :blog_name, :placeholder => "Blog Name (required)" if !current_user %><br>
+	<%=f.text_field :first_name, :placeholder => "First Name"%><br>
+	<%=f.text_field :last_name, :placeholder => "Last Name"%><br>
+	<%=f.text_field :email, :placeholder => "Email (required)"%><br>
+	<%=f.text_field :blog_name, :placeholder => "Blog Name (required)" if !current_user %><br>
 	
-<%= user.submit %>
+<%= f.submit %>
 <% end %>
  

@@ -13,8 +13,6 @@ class ShotsController < ApplicationController
 			if @shot.save
 				# add this shot to the array
 				pending_shot_ids << @shot.id
-				# session[:shot_ids]||=[]
-				# session[:shot_ids] << @shot.id
 				format.json { render json: {files: [@shot.to_jq_upload]}, status: :created, location: @shot }
 			else
 				format.json { render json: @shot.errors, status: :unprocessable_entity }
@@ -26,7 +24,6 @@ class ShotsController < ApplicationController
 		@shot = Shot.new
 		# reset sessions shot_id
 		reset_shot_ids
-		# session.delete :shot_ids
 	end
 
 	def destroy

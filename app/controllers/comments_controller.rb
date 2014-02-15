@@ -16,7 +16,8 @@ class CommentsController < ApplicationController
 		@comment = @post.comments.new(comment_params)
 		@comment.user_id = current_user.id
 		if @comment.save
-			redirect_to post_path(@post)
+			# redirect_to post_path(@post)
+			redirect_to posts_path
 		else
 			render action: 'new'
 		end

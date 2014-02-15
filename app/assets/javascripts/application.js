@@ -13,8 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-fileupload
+//= require jquery.turbolinks
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
 
+// $(document).ready(function(){
 
+// // Modal dropdown for create new task
+// 	$('#new-user-modal').click(function(){
+// 		$('.modal-body').load('users/new #new-user-modal-form');
+// 		$('.modal-title').load('users/new #new-user-modal-title');
+// 	});
+// 	$('#edit-user-modal').click(function(){
+// 		$('.modal-body').load('users/edit #edit-user-modal-form');
+// 		$('.modal-title').load('users/edit #edit-user-modal-title');
+// 	});
+// });
