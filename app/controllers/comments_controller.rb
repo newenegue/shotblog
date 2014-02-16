@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
 		if @comment.save
 			# redirect_to post_path(@post)
 			redirect_to posts_path
+			# render partial: 'posts/show_post', locals: {post: @post}
 		else
 			render action: 'new'
 		end

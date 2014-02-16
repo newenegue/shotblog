@@ -55,7 +55,7 @@ class PostsController < ApplicationController
 
 	def update
 		if set_post.user == current_user && set_post.update(post_params)
-			redirect_to post_path
+			redirect_to posts_path
 		else
 			redirect_to edit_post_path
 		end

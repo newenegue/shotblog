@@ -8,13 +8,13 @@
       	<div class="modal-body">
           <p><%= post.timestamp.strftime '%B %d, %Y' %></p>
 
-          <p>
-            <%= post.body %>
-          </p>
-
           <% post.shots.each do |shot| %>
             <%= image_tag shot.image.url if shot.image_stored?%>
           <% end %>
+
+          <p>
+            <%= post.body %>
+          </p>
 
           <p>by: <%= post.user.username %></p>
 
